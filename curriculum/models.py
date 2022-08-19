@@ -55,7 +55,7 @@ def save_lesson_files(instance, filename):
     return os.path.join(upload_to, filename)
 
 class Lesson(models.Model):
-    lesson_id = models.CharField(max_length=100, unique=True)
+    lesson_id = models.IntegerField(unique=True)
     Standard = models.ForeignKey(Standard, on_delete=models.CASCADE)
     created_by = models.ForeignKey(User,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

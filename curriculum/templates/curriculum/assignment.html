@@ -34,7 +34,7 @@
 
 {% block content %}
 
-<section id="best-features" class="text-center">
+<section id="best-features" class="text-center py-5">
     <h2 class="mb-5 font-weight-bold" style="color:#ff5722;">Practise Question</h2>
     <!-- class row for description-->
     <div class="row d-flex justify-content-center mb-4">
@@ -71,11 +71,16 @@
                 <td><a href="#"><button class="btn btn-secondary">No Files</button></a></td>
                 {% endif %}
                 <td>
-                    <a href="{% url 'answerSubmission' item.id %}" ><button class="btn btn-Success">Submit Assignment</button></a>
+                    <a href="{% url 'answerSubmission' item.id %}" ><button class="btn btn-success">Submit Assignment</button></a>
                     {% if user.userprofileinfo.user_type == 'teacher' or user.is_superuser %}
                         <a href="{% url 'viewSubmission' item.id %}" ><button class="btn btn-warning">View Submission</button></a>
                     {% endif %}
                 </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan='4' align="center" class="lead text-danger">No assignments</td>
             </tr>
             {% endfor %}
         </table>

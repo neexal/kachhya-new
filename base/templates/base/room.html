@@ -24,15 +24,15 @@
       />
     </div>
 
-    <div class="icon-wrapper">
+    {% comment %} <div class="icon-wrapper">
       <img
         class="open-button control-icon"
         src="{% static 'images/chat.svg' %}"
         onclick="openForm()"
       />
-    </div>
+    </div> {% endcomment %}
 
-    <div class="chat-popup" id="myForm">
+    {% comment %} <div class="chat-popup" id="myForm">
       <h1>Chat</h1>
       <form action="" class="form-container1">
         <div id="messages"></div>
@@ -47,13 +47,13 @@
           Close
         </button>
       </form>
-    </div>
+    </div> {% endcomment %}
 
     <div class="icon-wrapper">
       <img
         class="control-icon"
         id="leave-btn"
-        src="{% static 'images/leave.svg' %}"
+        src="{% static 'images/exit.svg' %}"
       />
     </div>
   </section>

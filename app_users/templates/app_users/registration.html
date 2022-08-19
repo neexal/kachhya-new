@@ -45,7 +45,9 @@
 </section>
 
   {% if registered %}
-    <h1>Thank you for registering</h1>
+    <h1 class="lead text-success text-center">Thank you for registering</h1>
+    <a align="center" class="nav-link btn btn-primary" href="{% url 'user_login' %}">Login</a>
+
   {% else %}
       <h3>Fill the form: </h3>
       <form method="post" enctype="multipart/form-data">

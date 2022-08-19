@@ -31,7 +31,7 @@
 
 {% block content %}
 
-<section id="best-features" class="text-center">
+<section id="best-features" class="text-center py-5">
     <h2 class="mb-5 font-weight-bold" style="color:#ff5722;">Create Practise Question</h2>
     <!-- class row for description-->
     <div class="row d-flex justify-content-center mb-4">
@@ -48,7 +48,7 @@
     <div class="form-group">
         {% csrf_token %}
         {{form|crispy}}
-        <button type="submit">Create Question</button>
+        <button type="submit" class="btn-lg btn-primary">Create Question</button>
     </div>
 </form>
 
