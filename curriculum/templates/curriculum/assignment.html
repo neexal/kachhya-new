@@ -70,7 +70,12 @@
                 {% if not item.file %}
                 <td><a href="#"><button class="btn btn-secondary">No Files</button></a></td>
                 {% endif %}
-                <td><a href="{% url 'answerSubmission' item.id %}" ><button class="btn btn-primary">Submit Assignment</button></a></td>
+                <td>
+                    <a href="{% url 'answerSubmission' item.id %}" ><button class="btn btn-Success">Submit Assignment</button></a>
+                    {% if user.userprofileinfo.user_type == 'teacher' or user.is_superuser %}
+                        <a href="{% url 'viewSubmission' item.id %}" ><button class="btn btn-warning">View Submission</button></a>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </table>

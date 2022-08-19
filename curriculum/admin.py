@@ -43,14 +43,14 @@ class ReplyAdmin(admin.ModelAdmin):
 admin.site.register(Reply, ReplyAdmin)
 
 class AssignmentAdmin(admin.ModelAdmin):
-	list_display = ('title','description', 'lesson','file','post_time',)
+	list_display = ('id','title','description', 'lesson','file','post_time',)
 	search_fields = ('title', 'description')
 	list_display_links = ('title',)
 admin.site.register(Assignment, AssignmentAdmin)
 
 
 class SubmissionAdmin(admin.ModelAdmin):
-    list_display = ('assignment','description','file','user',)
+    list_display = ('assignment_id','assignment','description','file','user',)
     search_fields = ('assignment','user')
     list_display_links = ('assignment','user','description',)
 admin.site.register(Submission, SubmissionAdmin)

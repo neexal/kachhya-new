@@ -1,3 +1,4 @@
+from ast import Assign
 from multiprocessing import context
 from urllib import request, response
 from django.http import HttpResponse, HttpResponseRedirect
@@ -169,7 +170,7 @@ def createAssignment(request, id):
     # }
     lesson=Lesson.objects.get(lesson_id=id)
     if request.method == 'POST':
-        form = AssignmentForm(request.POST, request.FILES)
+        form = AssignmentForm(request.POST, request.FILES) 
         if form.is_valid():
             new_data=form.save(commit=False)
             new_data.lesson=lesson
@@ -211,6 +212,11 @@ def submitAssignment(request, id):
     return render(request, 'curriculum/submitAssignment.html',{'form': form})
 
 
+def viewSubmission(request,id):
+    context={
+        'submission': Submission.objects.filter(assignment_id=id)
+    }
+    return render(request, 'curriculum/viewSubmission.html', context)
 
 
 

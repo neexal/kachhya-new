@@ -26,7 +26,7 @@
         <hr style="color:#ff5722;">
 
         <!-- description -->
-        <h4 class="white-text my-4">eSchool: Online Learning Platform</h4>
+        <h4 class="white-text my-4">kachhya: Online Learning Platform</h4>
   </div>
 </header>
 {% endblock %}
@@ -130,9 +130,9 @@
         </div>
       </div>
 
+      {% if user.userprofileinfo.user_type == 'teacher' or user.is_superuser %}
       <div class="col-md-4 mb-4 mt-4">
         <div class="card box-shadow-hover">
-          {% if user.userprofileinfo.user_type == 'teacher' or user.is_superuser %}
             <div class="card-body">
               <h5 class="card-title">Create Practise Questions</h5>
               <p class="card-text">Make questions for students to practise.</p>
@@ -140,19 +140,36 @@
               <button type="button" class="button-les"><span>Create Questions</span></button>
               </a>
             </div>
-          {% endif %}
-
-          {% if user.userprofileinfo.user_type == 'student' %}
-            <div class="card-body">
-              <h5 class="card-title">Practise Questions</h5>
-              <p class="card-text">Solve the given questions for your practise.</p>
-              <a href="{% url 'viewAssignmentById' lessons.lesson_id %}">
-              <button type="button" class="button-les"><span>View Questions</span></button>
-              </a>
-            </div>
-          {% endif %}
         </div>
       </div>
+      
+      <div class="col-md-4 mb-4 mt-4">
+        <div class="card box-shadow-hover">
+            <div class="card-body">
+              <h5 class="card-title">Check Answers</h5>
+              <p class="card-text">Check the given answers Submitted by students.</p>
+              <a href="{% url 'viewAssignmentById' lessons.lesson_id %}">
+              <button type="button" class="button-les"><span>View Submission</span></button>
+              </a>
+            </div>
+        </div>
+      </div>
+      {% endif %}
+        
+      {% if user.userprofileinfo.user_type == 'student' %}
+      <div class="col-md-4 mb-4 mt-4">
+        <div class="card box-shadow-hover">
+          <div class="card-body">
+            <h5 class="card-title">View Questions</h5>
+            <p class="card-text">Practise the given questions.</p>
+            <a href="{% url 'viewAssignmentById' lessons.lesson_id %}">
+            <button type="button" class="button-les"><span>View Assignment</span></button>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
 
     </div>
     <!-- update and delete button -->

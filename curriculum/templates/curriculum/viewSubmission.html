@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Submitted Answers{% endblock %}
+
+{% block image_block %}
+<header class="info-header">
+    <div id="page-intro" class="container-fluid d-flex align-items-center justify-content-center ">
+        <div class="row d-flex justify-content-center text-center">
+            <div class="col-md-10 text-white">
+                <!-- heading -->
+                <h2 class="display-4 font-weight-bold  p-5 " style="color:#ff5722;">Submitted Answers</h2>
+                <div class="row d-flex justify-content-center text-center">
+                    <ul class="breadcrumb">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'curriculum:standard_list' %}">Curriculum</a></li>
+
+                        <li class="disabled-text">Submitted Answers</li>
+                    </ul>
+                </div>
+
+                <!-- divider -->
+                <hr style="color:#ff5722;">
+
+                <!-- description -->
+                <h4 class="white-text my-4">See all the submitted answers by students.</h4>
+            </div>
+</header>
+{% endblock %}
+
+{% block content %}
+
+<section id="best-features" class="text-center py-5">
+    <h2 class="mb-5 font-weight-bold" style="color:#ff5722;">Submitted Answers</h2>
+    <!-- class row for description-->
+    <div class="row d-flex justify-content-center mb-4">
+        <!-- class column -->
+        <div class="col-md-8">
+            <p class="grey-text">Answer solved by the students for the given questions.</p>
+        </div>
+    </div>
+    <hr style="color:#ff5722;">
+</section>
+
+
+
+<section>
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <td>Assignment ID</td>
+                <td>Title</td>
+                <td>Submission Description</td>
+                <td>Submission Files</td>
+            </thead>
+            {% for item in submission %}
+            <tr>
+                <td>{{item.assignment_id}}</td>
+                <td>{{item.assignment}}</td>
+                <td>{{item.description}}</td>
+                {% if item.file %}
+                <td><a href="{{item.file.url}}" download><button class="btn btn-primary">Download Files</button></a></td>
+                {% endif %}
+
+                {% if not item.file %}
+                <td><a href="#"><button class="btn btn-secondary">No Files</button></a></td>
+                {% endif %}
+                {% comment %} <td><a href="{% url 'answerSubmission' item.id %}" ><button class="btn btn-primary">Submit Assignment</button></a></td> {% endcomment %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</section>
+
+{% endblock %}
