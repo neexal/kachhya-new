@@ -1,0 +1,85 @@
+{% extends 'base/main.html' %} {% load static %} {% block content %}
+
+<main>
+  <section id="room-name-wrapper">
+    <p>Room Name: <span id="room-name"></span></p>
+  </section>
+
+  <section id="video-streams"></section>
+
+  <section id="controls-wrapper">
+    <div class="icon-wrapper">
+      <img
+        class="control-icon"
+        id="mic-btn"
+        src="{% static 'images/microphone.svg' %}"
+      />
+    </div>
+
+    <div class="icon-wrapper">
+      <img
+        class="control-icon"
+        id="camera-btn"
+        src="{% static 'images/video.svg' %}"
+      />
+    </div>
+
+    <div class="icon-wrapper">
+      <img
+        class="open-button control-icon"
+        src="{% static 'images/chat.svg' %}"
+        onclick="openForm()"
+      />
+    </div>
+
+    <div class="chat-popup" id="myForm">
+      <h1>Chat</h1>
+      <form action="" class="form-container1">
+        <div id="messages"></div>
+
+        <label for="msg"><b>Message</b></label>
+        <textarea placeholder="Type message.." id="msg" required></textarea>
+
+        <button type="submit" class="btn" onclick="sendMsg(); return false">
+          Send
+        </button>
+        <button type="button" class="btn cancel" onclick="closeForm()">
+          Close
+        </button>
+      </form>
+    </div>
+
+    <div class="icon-wrapper">
+      <img
+        class="control-icon"
+        id="leave-btn"
+        src="{% static 'images/leave.svg' %}"
+      />
+    </div>
+  </section>
+</main>
+
+<script>
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+    document.getElementById("video-streams").style.position = "absolute"; 
+    document.getElementById("video-streams").style.right = "20%";
+    document.getElementById("video-streams").style.width = "80%"; 
+    
+  }
+
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+    document.getElementById("video-streams").style = "none";
+  }
+
+</script>
+
+<script
+  type="text/javascript"
+  src="{% static 'assets/AgoraRTC_N-4.8.0.js' %}"
+></script>
+<script type="text/javascript" src="{% static 'js/streams.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+{% endblock content %}

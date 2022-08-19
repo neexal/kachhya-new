@@ -1,0 +1,99 @@
+<mxfile host="65bd71144e">
+    <diagram id="55MtdcbTN-pnRmVGpxf6" name="Page-1">
+        <mxGraphModel dx="1054" dy="415" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="shape=waypoint;sketch=0;fillStyle=solid;size=6;pointerEvents=1;points=[];fillColor=none;resizable=0;rotatable=0;perimeter=centerPerimeter;snapToPoint=1;strokeWidth=20;strokeColor=#121212;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="50" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="" style="endArrow=classic;html=1;exitX=0.434;exitY=0.621;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="2" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="250" y="90" as="sourcePoint"/>
+                        <mxPoint x="240" y="160" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4" value="&lt;p style=&quot;font-size: 20px&quot;&gt;views Lesson&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#121212;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="165" y="160" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="" style="edgeStyle=none;html=1;fontSize=20;" parent="1" target="13" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="240" y="220" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="16" value="" style="edgeStyle=none;html=1;fontSize=20;" parent="1" source="13" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="240" y="540" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="13" value="&lt;span style=&quot;font-size: 20px&quot;&gt;is teacher or superuser?&lt;/span&gt;" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#121212;rounded=1;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="280" width="175" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="&lt;p style=&quot;font-size: 20px&quot;&gt;creates Practice Questions&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#121212;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="165" y="540" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="" style="endArrow=classic;html=1;fontSize=20;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="13" target="29" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="490" y="440" as="sourcePoint"/>
+                        <mxPoint x="440" y="590" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="440" y="380"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="21" value="" style="endArrow=classic;html=1;fontSize=20;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="17" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="490" y="680" as="sourcePoint"/>
+                        <mxPoint x="240" y="680" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="22" value="" style="endArrow=none;html=1;fontSize=20;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="120" y="819" as="sourcePoint"/>
+                        <mxPoint x="560" y="819" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="23" value="" style="endArrow=classic;html=1;fontSize=20;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="320" y="819" as="sourcePoint"/>
+                        <mxPoint x="320" y="939" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" value="" style="shape=waypoint;sketch=0;fillStyle=solid;size=6;pointerEvents=1;points=[];fillColor=none;resizable=0;rotatable=0;perimeter=centerPerimeter;snapToPoint=1;strokeWidth=20;strokeColor=#121212;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="919" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="NO" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="350" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="YES" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="180" y="480" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="&lt;p style=&quot;font-size: 20px&quot;&gt;views Practice Questions&lt;br&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#121212;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="540" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="" style="endArrow=classic;html=1;fontSize=20;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="29" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="370" y="630" as="sourcePoint"/>
+                        <mxPoint x="445" y="680" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="34" style="edgeStyle=none;html=1;fontSize=20;" parent="1" source="31" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="240" y="820" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="31" value="&lt;p style=&quot;font-size: 20px&quot;&gt;views&amp;nbsp; submitted answer&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#121212;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="165" y="680" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" style="edgeStyle=none;html=1;fontSize=20;" parent="1" source="32" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="445" y="820" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="&lt;p style=&quot;font-size: 20px&quot;&gt;submit the answers&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#121212;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="680" width="150" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
