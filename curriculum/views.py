@@ -1,5 +1,7 @@
 from ast import Assign
+import csv
 from multiprocessing import context
+from sre_parse import CATEGORIES
 from urllib import request, response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -7,7 +9,7 @@ from django.views.generic import (TemplateView, DetailView,
                                     ListView, CreateView,
                                     UpdateView,DeleteView,FormView,)
 from django.urls import reverse
-
+import os
 
 from base.views import lobby
 from .models import Assignment, Standard, Subject, Lesson, Comment, Submission
@@ -16,7 +18,14 @@ from django.urls import reverse_lazy
 from .forms import AssignmentForm, CommentForm,ReplyForm, LessonForm, SubmissionForm
 from django.http import HttpResponseRedirect
 
-# import base
+import pandas as pd
+import neattext.functions as nfx
+
+# Load ML/Rc Pkgs
+from sklearn.feature_extraction.text import CountVectorizer,TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity,linear_kernel
+
+
 
 
 # def videos(request):
@@ -218,6 +227,108 @@ def viewSubmission(request,id):
     }
     return render(request, 'curriculum/viewSubmission.html', context)
 
+
+def viewRecommended(request):
+    f = open("/home/bakaa/Desktop/kachhya-master/curriculum/udemy_courses.csv")
+    df = pd.read_csv(f)
+
+    # lesson = Lesson.objects.get(lesson_id=id)
+    # name = lesson.name
+# %%
+    df.head()
+
+    # %%
+    df['course_title']
+
+    # %%
+    dir(nfx)
+
+    # %%
+    # Clean Text:stopwords,special charac
+    df['clean_course_title'] = df['course_title'].apply(nfx.remove_stopwords)
+
+    # %%
+    # Clean Text:stopwords,special charac
+    df['clean_course_title'] = df['clean_course_title'].apply(nfx.remove_special_characters)
+
+    # %%
+    df[['course_title','clean_course_title']]
+
+    # %%
+    # Vectorize our Text
+    count_vect = CountVectorizer()
+    cv_mat = count_vect.fit_transform(df['clean_course_title'])
+
+    # %%
+    # Sparse
+    cv_mat
+
+    # %%
+    # Dense
+    cv_mat.todense()
+
+    # %%
+    df_cv_words = pd.DataFrame(cv_mat.todense(),columns=count_vect.get_feature_names())
+
+    # %%
+    df_cv_words.head()
+
+    # %%
+    # Cosine Similarity Matrix
+    cosine_sim_mat = cosine_similarity(cv_mat)
+
+    # %%
+    cosine_sim_mat
+
+    # %%
+    # import seaborn as sns
+    # sns.heatmap(cosine_sim_mat[0:10],annot=True)
+
+    # %%
+    df.head()
+
+    # %%
+    # Get Course ID/Index
+    course_indices = pd.Series(df.index,index=df['course_title']).drop_duplicates()
+
+    # %%
+    course_indices
+
+
+    # %%
+    def recommend_course(title,num_of_rec=10):
+        # ID for title
+        idx = course_indices[title]
+        # Course Indice
+        # Search inside cosine_sim_mat
+        scores = list(enumerate(cosine_sim_mat[idx]))
+        # Scores
+        # Sort Scores
+        sorted_scores = sorted(scores,key=lambda x:x[1],reverse=True)
+        # Recomm
+        selected_course_indices = [i[0] for i in sorted_scores[1:]]
+        selected_course_scores = [i[1] for i in sorted_scores[1:]]
+        result = df['course_title'].iloc[selected_course_indices]
+        rec_df = pd.DataFrame(result)
+        rec_df['similarity_scores'] = selected_course_scores
+        return rec_df.head(num_of_rec)
+        
+
+    # %%
+    data = recommend_course('Learn HTML5 At Your Own Pace. Ideal for Beginners',20)
+
+    # %%
+    # df.to_csv("data/udemy_courses_clean.csv")
+
+
+
+
+    context = {
+        'data':data
+    }
+    
+
+    return render(request, 'curriculum/recommendation.html', context)
 
 
 

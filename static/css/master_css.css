@@ -6,7 +6,7 @@ header,
 }
 
 #intro {
-    background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/static/Images/index-banner.JPG')no-repeat center center fixed;
+    background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/static/Images/index-banner.jpg')no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -20,7 +20,7 @@ header,
   }
 
 .bg-light.scrolled{
-  background-color: #b2ebf2 !important;
+  background-color: #ffffff !important;
 }
 
 
@@ -30,20 +30,28 @@ header,
 
 .navbar-light .nav-link {
     color: #ff5722;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.nav-link:hover{
+  color: #fff !important;
+  font-weight: bold;
+    font-size: 1rem;
 }
 
 
 .navbar-expand-lg {
-    background-color: #b2ebf2;
+    background-color: #ffffff;
   }
   @media (max-width: 768px) {
     .navbar:not(.top-nav-collapse) {
-      background-color: #b2ebf2;
+      background-color: #ffffff;
     }
   }
   @media (min-width: 800px) and (max-width: 850px) {
     .navbar:not(.top-nav-collapse) {
-      background-color: #b2ebf2;
+      background-color: #ffffff;
     }
   }
 
@@ -94,7 +102,7 @@ hr{
 }
 
 #page-intro {
-    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/Images/IMG_2141-min.JPG')no-repeat center center fixed;
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/Images/IMG_2141-min.jpg')no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -129,7 +137,7 @@ ul.breadcrumb li a {
 
 /* Add a color on mouse-over */
 ul.breadcrumb li a:hover {
-  color: #b2ebf2;
+  color: #ffffff;
   text-decoration: underline;
 }
 
@@ -162,7 +170,7 @@ ul.breadcrumb li a:hover {
 /* get lesson button */
 .button-les {
   border-radius: 4px;
-  background-color: #00bcd4;
+  background-color: #000000;
   border: none;
   color: #FFFFFF;
   text-align: center;
