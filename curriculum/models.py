@@ -1,3 +1,4 @@
+from calendar import prmonth
 from pydoc import describe
 from pyexpat import model
 from django.db import models
@@ -55,7 +56,7 @@ def save_lesson_files(instance, filename):
     return os.path.join(upload_to, filename)
 
 class Lesson(models.Model):
-    lesson_id = models.CharField(max_length=100, unique=True)
+    lesson_id = models.AutoField(max_length=100, primary_key=True, null=False, blank=False)
     Standard = models.ForeignKey(Standard, on_delete=models.CASCADE)
     created_by = models.ForeignKey(User,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -66,6 +67,7 @@ class Lesson(models.Model):
     video = models.FileField(upload_to=save_lesson_files,verbose_name="Video", blank=True, null=True)
     ppt = models.FileField(upload_to=save_lesson_files,verbose_name="Presentations", blank=True)
     Notes = models.FileField(upload_to=save_lesson_files,verbose_name="Notes", blank=True)
+    counter = models.IntegerField(max_length=100000)
 
     class Meta:
         ordering = ['position']

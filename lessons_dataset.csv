@@ -1,0 +1,23 @@
+course_title,slug,course_id
+Computer Fundamentals,computer-fundamentals,1
+Computer Basics,computer-basics,2
+Computer Hardware and Software,computer-hardware-and-software,3
+Operating System,operating-system,4
+Microsoft Word,microsoft-word,5
+Microsoft Excel,microsoft-excel,6
+Number System,number-system,7
+Program Design Tools: Algorithm and Flowchart,program-design-tools-algorithm-and-flowchart,8
+Programming Language,programming-language,9
+Introduction to Programming,introduction-to-programming,10
+Number System: Binary Number System,number-system-binary-number-system,11
+Number System: Decimal Number System,number-system-decimal-number-system,12
+Number System: Hexadecimal Number System,number-system-hexadecimal-number-system,13
+Combinational Logic Design,combinational-logic-design,14
+Counters and Registers,counters-and-registers,15
+Sequential Logic Design,sequential-logic-design,16
+"Relation, Functions and Graphs",relation-functions-and-graphs,17
+Set Theory and Real & Complex Number,set-theory-and-real-complex-number,18
+Sequence and Series,sequence-and-series,19
+Matrices and Determinants,matrices-and-determinants,20
+Analytical Geometry,analytical-geometry,21
+Permutation and Combination,permutation-and-combination,22
