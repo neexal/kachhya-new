@@ -67,7 +67,7 @@ class Lesson(models.Model):
     video = models.FileField(upload_to=save_lesson_files,verbose_name="Video", blank=True, null=True)
     ppt = models.FileField(upload_to=save_lesson_files,verbose_name="Presentations", blank=True)
     Notes = models.FileField(upload_to=save_lesson_files,verbose_name="Notes", blank=True)
-    counter = models.IntegerField(max_length=100000)
+    # counter = models.IntegerField(max_length=100000)
 
     class Meta:
         ordering = ['position']
