@@ -38,10 +38,15 @@
                   <div class="card box-shadow-hover">
                     <div class="card-body">
                       <h5 class="card-title">Chapter-{{lesson.position}}: {{lesson.name}}</h5>
-                      <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-                      <a href="{% url 'curriculum:lesson_detail' slug=lesson.slug subject=subjects.slug standard=lesson.Standard.slug %}" >
+                      <p class="card-text"> {{lesson.total_views|default_if_none:'0' }} Views</p>
+                      <form action="{% url 'curriculum:lesson_detail' slug=lesson.slug subject=subjects.slug standard=lesson.Standard.slug pk=lesson.lesson_id %}" method="get">
+                        <input type="hidden" name="lesson1_id" value="{{lesson.lesson_id}}">
+                        <button type="submit" class="button-les"><span>Get Lectures</span></button>
+                      </form>
+
+                      {% comment %} <a href="{% url 'curriculum:lesson_detail' slug=lesson.slug subject=subjects.slug standard=lesson.Standard.slug pk=lesson.lesson_id %}" >
                       <button type="button" class="button-les"><span>Get Lectures</span></button>
-                      </a>
+                      </a> {% endcomment %}
                     </div>
                   </div>
                 </div>

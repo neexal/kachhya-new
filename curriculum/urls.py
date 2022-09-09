@@ -29,7 +29,7 @@ urlpatterns = [
          views.LessonListView.as_view(), name='lesson_list'),
     path('<str:standard>/<str:slug>/create/',
          views.LessonCreateView.as_view(), name='lesson_create'),
-    path('<str:standard>/<str:subject>/<slug:slug>/',
+    path('<str:standard>/<str:subject>/<slug:slug>/<int:pk>',
          views.LessonDetailView.as_view(), name='lesson_detail'),
     path('<str:standard>/<str:subject>/<slug:slug>/update/',
          views.LessonUpdateView.as_view(), name='lesson_update'),

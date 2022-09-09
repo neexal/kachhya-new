@@ -43,6 +43,7 @@
     <blockquote class="blockquote mt-0">
       <footer class="blockquote-footer">Created on {{lessons.created_at}} by <cite
           title="Source Title">{{lessons.created_by}}</cite></footer>
+      <span>{{lessons.total_views}} Views</span>
     </blockquote>
   </div>
 
@@ -62,6 +63,7 @@
         <div>
           <h1 class="display-4">Oh Shoot!</h1>
           <p class="lead">No Video available</p>
+          <p>{{c}}</p>
         </div>
       </div>
       {% endif %}
@@ -194,12 +196,16 @@
       </div>
     </div>
     <div class="col-md-2 col-sm-12">
-    <h3 class="mb-4 mt-5" style="text-align: center;">Recommended Course</h3>
-        {% for item in subject_name %}
-          {{item.name}}
-        {% endfor %}
-
+      <div class="row m-5">
+        <h3 class="mb-4" style="text-align: center;">Recommended Course</h3>
         {{data}}
+      </div>
+      <div class="row m-5">
+        <h3 class="mb-4" style="text-align: center;">Most Viewed Course</h3>
+          {% for item in mostViewed %}
+            {{item.name}}
+          {% endfor %}
+      </div>
     </div>
   </div>
 </section>

@@ -3,7 +3,10 @@ import csv
 from curses.ascii import SUB
 from multiprocessing import context
 from sre_parse import CATEGORIES
-from urllib import request, response
+import urllib.request as request
+# from urllib import request, response
+# import urllib
+from xml.dom.expatbuilder import parseString
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.views.generic import (TemplateView, DetailView,
@@ -13,7 +16,7 @@ from django.urls import reverse
 import os
 
 from base.views import lobby
-from .models import Assignment, Standard, Subject, Lesson, Comment, Submission
+from .models import Assignment, Standard, Subject, Lesson, Comment, Submission, IpModel
 #  WorkingDays, TimeSlots
 from django.urls import reverse_lazy
 from .forms import AssignmentForm, CommentForm,ReplyForm, LessonForm, SubmissionForm
@@ -36,7 +39,7 @@ from sklearn.metrics.pairwise import cosine_similarity,linear_kernel
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-
+# request = urllib.request.Request(NASDAQ, None, headers)
 
 class StandardListView(ListView):
     context_object_name = 'standards'
@@ -53,21 +56,39 @@ class LessonListView(DetailView):
     model = Subject
     template_name = 'curriculum/lesson_list_view.html'
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
 class LessonDetailView(DetailView, FormView,):
     context_object_name = 'lessons'
     model = Lesson
     template_name = 'curriculum/lesson_detail_view.html'
     form_class = CommentForm
     second_form_class = ReplyForm
+    # lesson_name = 'lessons'
+    # Lesson.objects.filter().update(counter=Lesson('counter')+1)
 
-    def get_context_data(self, **kwargs,):
+    def get_context_data(self ,**kwargs):
         context = super(LessonDetailView, self).get_context_data(**kwargs)
-        # context['recommendation'] = Lesson.objects.all(subject=id)
+        context['mostViewed'] = Lesson.objects.all().order_by('-views').values()
+        # print(context['mostViewed'])
+        # lesson_name1 = context.get("lessons")
+        # lesson_name = lesson_name1['Lesson']
+        # lesson_name = Lesson.objects.get(lesson_id=context)
+        # if ''
         if 'form' not in context:
             context['form'] = self.form_class(request=self.request)
         if 'form2' not in context:
             context['form2'] = self.second_form_class(request=self.request)
         # context['comments'] = Comment.objects.filter(id=self.object.id)
+
+        #implementing cosine similarity algorithm
         f = open("/home/bakaa/Desktop/kachhya-master/curriculum/lessons_dataset.csv")
         df = pd.read_csv(f)
 
@@ -127,10 +148,28 @@ class LessonDetailView(DetailView, FormView,):
             rec_df['similarity_scores'] = selected_course_scores
             return rec_df.head(num_of_rec)
             
-        data = recommend_course('Set Theory and Real & Complex Number',3)
+        data = recommend_course("Number System",3)
         context['data'] = data
 
         return context
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        ip = get_client_ip(self.request)
+        if IpModel.objects.filter(ip=ip).exists():
+            print("IP is already present")
+            l_id = request.GET.get('lesson1_id')
+            print(l_id)
+            lessonIP = Lesson.objects.get(lesson_id=l_id)
+            lessonIP.views.add(IpModel.objects.get(ip=ip))
+        else:
+            IpModel.objects.create(ip=ip)
+            l_id = request.GET.get('lesson1_id')
+            print(l_id)
+            lessonIP = Lesson.objects.get(lesson_id=l_id)
+            lessonIP.views.add(IpModel.objects.get(ip=ip))
+        return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -154,12 +193,16 @@ class LessonDetailView(DetailView, FormView,):
             return self.form2_valid(form)
 
 
-    def get_success_url(self):
+    def get_success_url(self,request):
         self.object = self.get_object()
         standard = self.object.Standard
         subject = self.object.subject
+        lesson = self.object.lesson
+        ip = get_client_ip(request) 
         return reverse_lazy('curriculum:lesson_detail',kwargs={'standard':standard.slug,
                                                              'subject':subject.slug,
+                                                             'lesson':lesson,
+                                                             'ip':ip,
                                                              'slug':self.object.slug})
     def form_valid(self, form):
         self.object = self.get_object()

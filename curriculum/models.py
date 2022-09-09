@@ -1,6 +1,5 @@
 from calendar import prmonth
 from pydoc import describe
-from pyexpat import model
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
@@ -8,6 +7,12 @@ from django.contrib.auth.models import User
 import os
 
 # Create your models here.
+class IpModel(models.Model):
+    ip = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.ip
+
 class Standard(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(null=True, blank=True)
@@ -67,10 +72,15 @@ class Lesson(models.Model):
     video = models.FileField(upload_to=save_lesson_files,verbose_name="Video", blank=True, null=True)
     ppt = models.FileField(upload_to=save_lesson_files,verbose_name="Presentations", blank=True)
     Notes = models.FileField(upload_to=save_lesson_files,verbose_name="Notes", blank=True)
-    # counter = models.IntegerField(max_length=100000)
+    # counter = models.IntegerField(max_length=100000, default="1")
+    views = models.ManyToManyField(IpModel, related_name="post_views", blank=True, null=True)
+
 
     class Meta:
         ordering = ['position']
+
+    def total_views(self):
+        return self.views.count()
 
     def __str__(self):
         return self.name

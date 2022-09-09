@@ -1,10 +1,12 @@
 from django.contrib import admin
-from curriculum.models import Assignment, Standard, Subject, Lesson, Comment, Reply, Submission
+from curriculum.models import Assignment, IpModel, Standard, Subject, Lesson, Comment, Reply, Submission
 # WorkingDays, TimeSlots, SlotSubject
 # Register your models here.
 
 
 admin.site.register(Standard)
+admin.site.register(IpModel)
+
 # admin.site.register(Subject)
 # admin.site.register(Comment)
 # admin.site.register(Reply)
