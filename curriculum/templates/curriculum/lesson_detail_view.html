@@ -203,7 +203,9 @@
       <div class="row m-5">
         <h3 class="mb-4" style="text-align: center;">Most Viewed Course</h3>
           {% for item in mostViewed %}
-            {{item.name}}
+          <a href="{% url 'curriculum:lesson_detail' slug=lesson.slug subject=subjects.slug standard=lesson.Standard.slug pk=item.lesson_id %}" >
+            <button type="button" class="button-les"><span>{{item.name}}</span></button>
+            </a>
           {% endfor %}
       </div>
     </div>
