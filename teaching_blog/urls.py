@@ -67,7 +67,7 @@ urlpatterns = [
     path('create-assignment/<str:id>', vs.createAssignment, name="createAssignment"),
     path('submit-assignment/<str:id>',vs.submitAssignment, name='answerSubmission'),
     path('viewSubmission/<str:id>', vs.viewSubmission, name="viewSubmission"),
-    path('recommend/', vs.viewRecommended, name="viewRecommended"),
+    path('popular/<str:id>', vs.viewPopular, name="viewPopular"),
 
 
 

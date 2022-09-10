@@ -13,18 +13,7 @@
         <!-- heading -->
         <h2 class="display-4 font-weight-bold  p-5 " style="color:#ff5722;">Chapter-{{lessons.position}}:
           {{lessons.name}}</h2>
-        <div class="row d-flex justify-content-center text-center">
-          <ul class="breadcrumb">
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'curriculum:standard_list' %}">Curriculum</a></li>
-            <li><a href="{% url 'curriculum:subject_list' slug=lessons.Standard.slug %}">{{lessons.Standard.name}}</a>
-            </li>
-            <li><a
-                href="{% url 'curriculum:lesson_list' standard=lessons.Standard.slug slug=lessons.subject.slug %}">{{lessons.subject.name}}</a>
-            </li>
-            <li class="disabled-text">{{lessons.name}}</li>
-          </ul>
-        </div>
+        
 
         <!-- divider -->
         <hr style="color:#ff5722;">
@@ -48,7 +37,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-10 col-sm-12">
+    <div class="col-md-12 col-sm-12">
       {% if lessons.video %}
       <!-- video -->
       <div class="row d-flex justify-content-center mb-3">
@@ -195,21 +184,7 @@
         {% endif %}
       </div>
     </div>
-    <div class="col-md-2 col-sm-12">
-      <div class="row m-5">
-        <h3 class="mb-4" style="text-align: center;">Recommended Course</h3>
-        {{data}}
-      </div>
-    </div>
   </div>
-<div class="row m-5">
-    <h3 class="mb-4" style="text-align: center;">Most Viewed Course</h3><br>
-      {% for item in mostViewed %}
-      <a href="{% url 'viewPopular' id=item.lesson_id %}" >
-        <button type="button" class="btn button-les"><span>{{item.name}}</span></button>
-      </a>
-      {% endfor %}
-</div>
 </section>
 
 <hr class="my-5" style="color:#ff5722;">
@@ -219,61 +194,6 @@
 
 
 
-
-<!-- Comments section -->
-<div class="row">
-  <section class="col-md-12">
-    <h2 class="mb-4 mt-5 font-weight-bold" style="color:#ff5722;">Questions And Queries</h2>
-    <h4 class="mt-2 font-weight-bold" style="color:#ff5722;">Post your comment or question below:</h4>
-    <br><br>
-    <div class="container row">
-      <div class="col-md-12">
-        <form method="post">
-          <div class="form-group commentss">
-            {% csrf_token %}
-            {{form|crispy}}
-            <input type="submit" name="form" value="Add Comment" class="btn btn-primary btn-sm">
-          </div>
-        </form>
-
-      </div>
-    </div>
-    <div class="row">
-      {% for comment in lessons.comments.all %}
-      <div class="col-md-12 mt-2 mb-2">
-        <div class="media border p-3">
-          <img src="{% static 'Images/user_avatar.png' %}" alt="John Doe" class="mr-3 mt-3 rounded-circle"
-            style="width:60px;">
-          <div class="media-body">
-            <h4>{{comment.author}} <small><i>Posted on {{comment.date_added}}</i></small></h4>
-            <p>{{comment.body}}</p>
-            {% for reply in comment.replies.all %}
-            <div class="media p-3">
-              <img src="{% static 'Images/user_avatar.png' %}" alt="Jane Doe" class="mr-3 mt-3 rounded-circle"
-                style="width:45px;">
-              <div class="media-body">
-                <h5>{{reply.author}} <small><i>Posted on {{reply.date_added}}</i></small></h5>
-                <p>{{reply.reply_body}}</p>
-              </div>
-            </div>
-            {% endfor %}
-            <!-- form to post reply -->
-            <form method="post">
-              <input type="hidden" name="comment.id" value="{{comment.id}}">
-              <input type="hidden" name="comment.comm_name" value="{{comment.comm_name}}">
-              {% csrf_token %}
-              {{form2.as_p}}
-              <input type="submit" name="form2" value="Add Reply" class="btn btn-warning btn-sm">
-            </form>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-
-
-  </section>
-</div>
 </div>
 </div>
 {%endblock%}
